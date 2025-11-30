@@ -1,9 +1,8 @@
 """Animation system for Cyfox sprites"""
-# pylint: disable=duplicate-code
+# pylint: disable=duplicate-code,import-error
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional
-# pylint: disable=import-error
 import pygame
 from src.core.state import CyfoxState
 from src.core.config import Config
@@ -159,8 +158,7 @@ class AnimationManager:
         self.sprite_path = Path(sprite_path)
         self._load_animations()
 
-    # pylint: disable=too-many-locals,too-many-branches,too-many-statements
-    def _load_animations(self):
+    def _load_animations(self):  # pylint: disable=too-many-locals,too-many-branches,too-many-statements
         """Load all animations from sprite or sprite sheet"""
         if not self.sprite_path.exists():
             print(f"Warning: Sprite not found at {self.sprite_path}")
