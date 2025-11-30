@@ -1,5 +1,9 @@
 # Cyfox - Desktop DevOps Buddy
 
+<p align="center">
+  <img src="res/pixel-cyfox.png" alt="Cyfox Pixel Art" width="128" height="128" />
+</p>
+
 Animated desktop buddy for Raspberry Pi Zero 2W with Argon40 Pod Display. Reminds you to eat/drink/rest, scans your network, and shows Reddit posts.
 
 ## Quick Start
