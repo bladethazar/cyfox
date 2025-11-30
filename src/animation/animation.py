@@ -158,7 +158,8 @@ class AnimationManager:
         self.sprite_path = Path(sprite_path)
         self._load_animations()
 
-    def _load_animations(self):  # pylint: disable=too-many-locals,too-many-branches,too-many-statements
+    # pylint: disable=too-many-locals,too-many-branches,too-many-statements
+    def _load_animations(self):
         """Load all animations from sprite or sprite sheet"""
         if not self.sprite_path.exists():
             print(f"Warning: Sprite not found at {self.sprite_path}")
