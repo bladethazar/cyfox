@@ -12,6 +12,7 @@ from src.core.state import StateManager, CyfoxState
 
 class ScanResult:
     """Represents a network scan result"""
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, host: str, ports: List[int], services: Dict[str, str],
                  vulnerabilities: List[str] = None):
@@ -36,6 +37,7 @@ class ScanResult:
 
 class NetworkScanner:
     """Network vulnerability scanner (Bjorn-inspired)"""
+    # pylint: disable=too-many-instance-attributes
 
     def __init__(self, config: Config, state_manager: StateManager):
         # pylint: disable=too-many-instance-attributes

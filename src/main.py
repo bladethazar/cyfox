@@ -16,9 +16,9 @@ from src.modules.reddit import RedditFetcher
 
 class CyfoxApp:
     """Main application class for Cyfox"""
+    # pylint: disable=too-many-instance-attributes
 
     def __init__(self):
-        # pylint: disable=too-many-instance-attributes
         # Initialize configuration
         self.config = Config()
 

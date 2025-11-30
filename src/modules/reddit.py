@@ -10,6 +10,7 @@ from src.core.state import StateManager
 
 class RedditPost:
     """Represents a Reddit post"""
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, title: str, subreddit: str, score: int, url: str,
                  selftext: str = "", author: str = ""):
@@ -39,6 +40,7 @@ class RedditPost:
 
 class RedditFetcher:
     """Fetches Reddit posts from IT/DevOps subreddits"""
+    # pylint: disable=too-many-instance-attributes
 
     def __init__(self, config: Config, state_manager: StateManager):
         # pylint: disable=too-many-instance-attributes

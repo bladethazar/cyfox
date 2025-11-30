@@ -70,6 +70,7 @@ class SpriteSheet:
 
 class Animation:
     """Represents a single animation sequence"""
+    # pylint: disable=too-many-instance-attributes
 
     def __init__(self, frames: List[pygame.Surface], fps: int = 8, loop: bool = True):
         """

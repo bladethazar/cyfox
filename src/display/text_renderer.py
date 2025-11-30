@@ -45,6 +45,7 @@ class TextRenderer:
         Returns:
             pygame.Surface with rendered text
         """
+        # pylint: disable=too-many-locals
         font = self.fonts.get(size, self.fonts.get(12))
         if not font:
             return pygame.Surface((1, 1), pygame.SRCALPHA)
