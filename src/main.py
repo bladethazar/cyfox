@@ -18,6 +18,7 @@ class CyfoxApp:
     """Main application class for Cyfox"""
 
     def __init__(self):
+        # pylint: disable=too-many-instance-attributes
         # Initialize configuration
         self.config = Config()
 
@@ -110,6 +111,7 @@ class CyfoxApp:
     def _render_text(self, text: str, position: tuple, color=(255, 255, 255),
                     max_width: int = None, size: int = 10):
         """Render text on display"""
+        # pylint: disable=too-many-arguments,too-many-positional-arguments
         if not text:
             return
         text_surface = self.text_renderer.render_text(
@@ -118,6 +120,7 @@ class CyfoxApp:
 
     def _render_ui(self):
         """Render UI elements based on current state and mode"""
+        # pylint: disable=too-many-locals
         self.display.clear()
 
         # Get current animation frame

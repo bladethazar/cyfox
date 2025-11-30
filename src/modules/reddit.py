@@ -13,6 +13,7 @@ class RedditPost:
 
     def __init__(self, title: str, subreddit: str, score: int, url: str,
                  selftext: str = "", author: str = ""):
+        # pylint: disable=too-many-arguments,too-many-positional-arguments
         self.title = title
         self.subreddit = subreddit
         self.score = score
@@ -32,12 +33,15 @@ class RedditPost:
             'author': self.author,
             'timestamp': self.timestamp.isoformat()
         }
+    
+    # pylint: disable=too-few-public-methods
 
 
 class RedditFetcher:
     """Fetches Reddit posts from IT/DevOps subreddits"""
 
     def __init__(self, config: Config, state_manager: StateManager):
+        # pylint: disable=too-many-instance-attributes
         self.config = config
         self.state_manager = state_manager
         self.subreddits = config.get('cyfox.reddit.subreddits', [

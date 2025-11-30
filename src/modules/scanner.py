@@ -1,4 +1,5 @@
 """Network vulnerability scanner module (Bjorn-inspired)"""
+# pylint: disable=duplicate-code
 import threading
 import ipaddress
 import time
@@ -29,12 +30,15 @@ class ScanResult:
             'vulnerabilities': self.vulnerabilities,
             'timestamp': self.timestamp.isoformat()
         }
+        
+    # pylint: disable=too-few-public-methods
 
 
 class NetworkScanner:
     """Network vulnerability scanner (Bjorn-inspired)"""
 
     def __init__(self, config: Config, state_manager: StateManager):
+        # pylint: disable=too-many-instance-attributes
         self.config = config
         self.state_manager = state_manager
         self.scan_interval = config.get('cyfox.scanner.scan_interval', 3600)

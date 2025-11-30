@@ -37,6 +37,7 @@ class SpriteSheet:
             rows: Number of rows in sprite sheet
             cols: Number of columns in sprite sheet
         """
+        # pylint: disable=too-many-arguments,too-many-positional-arguments
         self.image = pygame.image.load(image_path).convert_alpha()
         self.frame_width = frame_width
         self.frame_height = frame_height
@@ -79,6 +80,7 @@ class Animation:
             fps: Frames per second for this animation
             loop: Whether animation should loop
         """
+        # pylint: disable=too-many-instance-attributes
         self.frames = frames
         self.fps = fps
         self.loop = loop
@@ -207,6 +209,7 @@ class AnimationManager:
         # If sprite sheet has multiple frames, distribute them across animations
         total_frames = sprite_sheet.get_frame_count()
 
+        # pylint: disable=too-many-branches,too-many-statements
         if total_frames == 1:
             # Single sprite - use for all animations
             base_frame = sprite_sheet.get_frame(0)

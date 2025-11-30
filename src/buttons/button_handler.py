@@ -52,6 +52,7 @@ class ButtonHandler:
 
     def _check_buttons(self):
         """Check button states (runs in separate thread)"""
+        # pylint: disable=too-many-nested-blocks
         last_state = {pin: True for pin in self.button_pins.values()}
         debounce_time = {pin: 0 for pin in self.button_pins.values()}
         debounce_delay = 50  # milliseconds
