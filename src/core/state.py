@@ -83,4 +83,3 @@ class StateManager:
         current_index = modes.index(self.mode)
         next_index = (current_index + 1) % len(modes)
         self.mode = modes[next_index]
-

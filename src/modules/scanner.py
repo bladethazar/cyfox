@@ -30,7 +30,7 @@ class ScanResult:
             'vulnerabilities': self.vulnerabilities,
             'timestamp': self.timestamp.isoformat()
         }
-        
+
     # pylint: disable=too-few-public-methods
 
 
@@ -177,4 +177,3 @@ class NetworkScanner:
     def get_results(self) -> List[ScanResult]:
         """Get latest scan results"""
         return self.scan_results
-

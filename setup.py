@@ -63,4 +63,3 @@ setup(
         "src": ["../config/*.yaml", "../res/*.png"],
     },
 )
-

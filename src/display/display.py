@@ -50,4 +50,3 @@ class Display:
     def quit(self):
         """Clean up pygame"""
         pygame.quit()
-

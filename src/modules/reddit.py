@@ -33,7 +33,7 @@ class RedditPost:
             'author': self.author,
             'timestamp': self.timestamp.isoformat()
         }
-    
+
     # pylint: disable=too-few-public-methods
 
 
@@ -147,4 +147,3 @@ class RedditFetcher:
         self.running = False
         if self.thread:
             self.thread.join(timeout=1.0)
-

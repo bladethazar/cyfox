@@ -156,8 +156,9 @@ class AnimationManager:
         self.sprite_path = Path(sprite_path)
         self._load_animations()
 
-    def _load_animations(self):
+    def _load_animations(self):  # pylint: disable=too-many-locals
         """Load all animations from sprite or sprite sheet"""
+        # pylint: disable=too-many-branches,too-many-statements
         if not self.sprite_path.exists():
             print(f"Warning: Sprite not found at {self.sprite_path}")
             # Create a simple placeholder
@@ -306,4 +307,3 @@ class AnimationManager:
             CyfoxState.ALERT: AnimationType.ALERT,
         }
         return mapping.get(state, AnimationType.IDLE)
-

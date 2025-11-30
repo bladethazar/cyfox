@@ -99,4 +99,3 @@ class ButtonHandler:
 
         if self.gpio_available:
             GPIO.cleanup()
-

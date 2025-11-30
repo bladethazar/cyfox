@@ -147,4 +147,3 @@ class ReminderModule:
             if not reminder.acknowledged and reminder.should_trigger():
                 return reminder
         return None
-

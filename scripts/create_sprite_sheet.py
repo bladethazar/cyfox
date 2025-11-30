@@ -44,7 +44,7 @@ def create_simple_sprite_sheet(base_image_path: str, output_path: str,
     print(f"  Size: {sheet_width}×{sheet_height}")
     print(f"  Frames: {frames_per_row}×{rows} = {frames_per_row * rows}")
     print(f"  Frame size: {width}×{height}")
-    print(f"\nNext steps:")
+    print("\nNext steps:")
     print(f"  1. Open {output_path} in GIMP/Photoshop/Aseprite")
     print("  2. Edit each frame to create animations")
     print("  3. Update AnimationManager to use sprite sheet")
@@ -92,4 +92,3 @@ if __name__ == "__main__":
     add_frame_labels(str(output), str(labeled_output), frames_per_row=3, rows=8)
 
     print(f"\n✓ Done! Edit {output} to create your animations")
-

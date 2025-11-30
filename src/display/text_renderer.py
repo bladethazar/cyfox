@@ -114,7 +114,8 @@ class TextRenderer:
             return pygame.Surface((1, 1), pygame.SRCALPHA)
 
         max_width = max(line.get_width() for line in rendered_lines)
-        total_height = sum(line.get_height() for line in rendered_lines) + spacing * (len(rendered_lines) - 1)
+        total_height = sum(line.get_height() for line in rendered_lines) + spacing * (
+            len(rendered_lines) - 1)
 
         surface = pygame.Surface((max_width, total_height), pygame.SRCALPHA)
         y = 0

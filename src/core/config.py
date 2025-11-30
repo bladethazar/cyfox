@@ -55,4 +55,3 @@ class Config:
         self.config_path.parent.mkdir(parents=True, exist_ok=True)
         with open(self.config_path, 'w', encoding='utf-8') as f:
             yaml.dump(self._config, f, default_flow_style=False, sort_keys=False)
-
