@@ -1,0 +1,49 @@
+# Cyfox Configuration
+cyfox:
+  # Display settings
+  display:
+    width: 128
+    height: 128
+    fps: 30
+    
+  # Animation settings
+  animation:
+    idle_fps: 8
+    active_fps: 12
+    transition_duration: 0.3
+    # Sprite sheet configuration (optional - auto-detected if not set)
+    # frame_width: 128    # Width of each frame in sprite sheet
+    # frame_height: 128   # Height of each frame in sprite sheet
+    # sprite_rows: 8      # Number of rows in sprite sheet
+    # sprite_cols: 3      # Number of columns in sprite sheet
+    
+  # Reminder settings (in minutes)
+  reminders:
+    eat_interval: 180  # 3 hours
+    drink_interval: 60  # 1 hour
+    rest_interval: 90   # 1.5 hours
+    focus_interval: 25   # Pomodoro style
+    
+  # Network scanner settings
+  scanner:
+    scan_interval: 3600  # 1 hour
+    network_range: "192.168.1.0/24"
+    ports: [22, 80, 443, 445, 3306, 3389]
+    
+  # Reddit settings
+  reddit:
+    subreddits:
+      - "ProgrammerHumor"
+      - "sysadmin"
+      - "devops"
+      - "linuxmemes"
+    fetch_interval: 1800  # 30 minutes
+    max_posts: 10
+    
+  # Button mappings (GPIO pins for Argon40 Pod)
+  buttons:
+    button1: 5   # Acknowledge reminder
+    button2: 6   # Next Reddit post
+    button3: 13  # Start network scan
+    button4: 19  # Cycle mode/menu
+

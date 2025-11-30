@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cyfox-config
+  namespace: cyfoxlab
+data:
+  config.yaml: |
+    cyfox:
+      display:
+        width: 128
+        height: 128
+        fps: 30
+      animation:
+        idle_fps: 8
+        active_fps: 12
+        transition_duration: 0.3
+      reminders:
+        eat_interval: 180
+        drink_interval: 60
+        rest_interval: 90
+        focus_interval: 25
+      scanner:
+        scan_interval: 3600
+        network_range: "192.168.1.0/24"
+        ports: [22, 80, 443, 445, 3306, 3389]
+      reddit:
+        subreddits:
+          - "ProgrammerHumor"
+          - "sysadmin"
+          - "devops"
+          - "linuxmemes"
+        fetch_interval: 1800
+        max_posts: 10
+      buttons:
+        button1: 5
+        button2: 6
+        button3: 13
+        button4: 19
+
