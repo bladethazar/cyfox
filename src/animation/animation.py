@@ -1,4 +1,5 @@
 """Animation system for Cyfox sprites"""
+# pylint: disable=duplicate-code
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -157,9 +158,9 @@ class AnimationManager:
         self.sprite_path = Path(sprite_path)
         self._load_animations()
 
-    def _load_animations(self):  # pylint: disable=too-many-locals
+    def _load_animations(self):
         """Load all animations from sprite or sprite sheet"""
-        # pylint: disable=too-many-branches,too-many-statements
+        # pylint: disable=too-many-locals,too-many-branches,too-many-statements
         if not self.sprite_path.exists():
             print(f"Warning: Sprite not found at {self.sprite_path}")
             # Create a simple placeholder

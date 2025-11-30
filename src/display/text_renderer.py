@@ -125,4 +125,3 @@ class TextRenderer:
             y += line_surf.get_height() + spacing
 
         return surface
-

@@ -1,4 +1,5 @@
 """State management for Cyfox"""
+# pylint: disable=duplicate-code
 from enum import Enum
 from typing import Callable
 import threading

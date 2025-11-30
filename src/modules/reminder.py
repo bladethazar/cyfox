@@ -96,8 +96,8 @@ class ReminderModule:
 
     def _check_reminders(self):
         """Check reminders periodically (runs in thread)"""
+        # pylint: disable=too-many-nested-blocks
         while self.running:
-            # pylint: disable=too-many-nested-blocks
             active_reminder = None
 
             for name, reminder in self.reminders.items():
