@@ -30,5 +30,5 @@ fi
 
 # Run Cyfox
 echo "Starting Cyfox..."
-python3 run.py
+python3 -m src.main
 

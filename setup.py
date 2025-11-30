@@ -7,7 +7,7 @@ readme_file = Path(__file__).parent / "README.md"
 long_description = readme_file.read_text() if readme_file.exists() else ""
 
 # Read version
-version_file = Path(__file__).parent / "cyfox" / "__init__.py"
+version_file = Path(__file__).parent / "src" / "__init__.py"
 version = "1.0.0"
 if version_file.exists():
     for line in version_file.read_text().splitlines():
@@ -55,12 +55,12 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "cyfox=cyfox.main:main",
+            "cyfox=src.main:main",
         ],
     },
     include_package_data=True,
     package_data={
-        "cyfox": ["../config/*.yaml", "../frontend/assets/*.png"],
+        "src": ["../config/*.yaml", "../res/*.png"],
     },
 )
 

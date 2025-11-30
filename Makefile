@@ -15,7 +15,7 @@ install:
 	pip install -r requirements.txt
 
 run:
-	python run.py
+	python -m src.main
 
 test:
 	pytest tests/ -v
@@ -28,9 +28,9 @@ docker-run:
 		-v /dev:/dev -v /sys:/sys cyfox:latest
 
 k8s-deploy:
-	kubectl apply -f k8s/namespace.yaml
-	kubectl apply -f k8s/configmap.yaml
-	kubectl apply -f k8s/deployment.yaml
+	kubectl apply -f k3s/namespace.yaml
+	kubectl apply -f k3s/configmap.yaml
+	kubectl apply -f k3s/deployment.yaml
 
 clean:
 	find . -type d -name __pycache__ -exec rm -r {} +

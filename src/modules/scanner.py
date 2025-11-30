@@ -6,8 +6,8 @@ import json
 import time
 from typing import List, Dict, Optional, Callable
 from datetime import datetime
-from cyfox.core.config import Config
-from cyfox.core.state import StateManager, CyfoxState
+from src.core.config import Config
+from src.core.state import StateManager, CyfoxState
 
 
 class ScanResult:

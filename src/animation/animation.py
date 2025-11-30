@@ -4,8 +4,8 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional
 from enum import Enum
-from cyfox.core.state import CyfoxState
-from cyfox.core.config import Config
+from src.core.state import CyfoxState
+from src.core.config import Config
 
 
 class AnimationType(Enum):
@@ -150,7 +150,7 @@ class AnimationManager:
         # Default sprite path
         if sprite_path is None:
             project_root = Path(__file__).parent.parent.parent
-            sprite_path = project_root / "frontend" / "assets" / "cyfox.png"
+            sprite_path = project_root / "res" / "cyfox.png"
         
         self.sprite_path = Path(sprite_path)
         self._load_animations()

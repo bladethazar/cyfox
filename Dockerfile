@@ -36,9 +36,9 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 # Copy application code
-COPY cyfox/ ./cyfox/
+COPY src/ ./src/
 COPY config/ ./config/
-COPY frontend/assets/ ./frontend/assets/
+COPY res/ ./res/
 COPY run.py .
 
 # Create non-root user for security

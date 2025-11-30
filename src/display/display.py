@@ -3,7 +3,7 @@ import pygame
 import os
 from pathlib import Path
 from typing import Optional
-from cyfox.core.config import Config
+from src.core.config import Config
 
 
 class Display:

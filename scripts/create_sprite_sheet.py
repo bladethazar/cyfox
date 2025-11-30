@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
 """Helper script to create sprite sheets from base image"""
-from PIL import Image, ImageDraw, ImageFont
 import sys
 from pathlib import Path
+
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ImportError:
+    print("Error: Pillow is required for this script.")
+    print("Install it with: pip install Pillow")
+    print("Or install all requirements: pip install -r requirements.txt")
+    sys.exit(1)
 
 
 def create_simple_sprite_sheet(base_image_path: str, output_path: str, 
@@ -70,8 +77,8 @@ def add_frame_labels(image_path: str, output_path: str,
 
 if __name__ == "__main__":
     project_root = Path(__file__).parent.parent
-    base_image = project_root / "frontend" / "assets" / "cyfox.png"
-    output = project_root / "frontend" / "assets" / "cyfox_sprites.png"
+    base_image = project_root / "res" / "cyfox.png"
+    output = project_root / "res" / "cyfox_sprites.png"
     
     if not base_image.exists():
         print(f"Error: Base image not found at {base_image}")
@@ -81,7 +88,7 @@ if __name__ == "__main__":
     create_simple_sprite_sheet(str(base_image), str(output), frames_per_row=3, rows=8)
     
     # Create labeled version
-    labeled_output = project_root / "frontend" / "assets" / "cyfox_sprites_labeled.png"
+    labeled_output = project_root / "res" / "cyfox_sprites_labeled.png"
     add_frame_labels(str(output), str(labeled_output), frames_per_row=3, rows=8)
     
     print(f"\n✓ Done! Edit {output} to create your animations")

@@ -2,7 +2,7 @@
 import threading
 import time
 from typing import Dict, Callable, Optional
-from cyfox.core.config import Config
+from src.core.config import Config
 
 try:
     import RPi.GPIO as GPIO

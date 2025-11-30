@@ -1,15 +1,15 @@
 """Main application entry point for Cyfox"""
 import sys
 import signal
-from cyfox.core.config import Config
-from cyfox.core.state import StateManager, CyfoxState, CyfoxMode
-from cyfox.display.display import Display
-from cyfox.display.text_renderer import TextRenderer
-from cyfox.animation.animation import AnimationManager
-from cyfox.buttons.button_handler import ButtonHandler
-from cyfox.modules.reminder import ReminderModule
-from cyfox.modules.scanner import NetworkScanner
-from cyfox.modules.reddit import RedditFetcher
+from src.core.config import Config
+from src.core.state import StateManager, CyfoxState, CyfoxMode
+from src.display.display import Display
+from src.display.text_renderer import TextRenderer
+from src.animation.animation import AnimationManager
+from src.buttons.button_handler import ButtonHandler
+from src.modules.reminder import ReminderModule
+from src.modules.scanner import NetworkScanner
+from src.modules.reddit import RedditFetcher
 
 
 class CyfoxApp:
