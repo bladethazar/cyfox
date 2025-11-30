@@ -1,4 +1,5 @@
 """Display handler for Argon40 Pod Display"""
+# pylint: disable=import-error
 import pygame
 from src.core.config import Config
 

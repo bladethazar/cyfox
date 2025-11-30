@@ -1,6 +1,7 @@
 """Configuration management"""
 from pathlib import Path
 from typing import Any, Dict, Optional
+# pylint: disable=import-error
 import yaml
 
 

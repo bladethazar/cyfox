@@ -2,6 +2,7 @@
 import sys
 import signal
 import traceback
+# pylint: disable=import-error
 import pygame
 from src.core.config import Config
 from src.core.state import StateManager, CyfoxState, CyfoxMode

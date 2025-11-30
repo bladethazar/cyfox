@@ -1,2 +1,1 @@
 """Functional modules for Cyfox"""
-

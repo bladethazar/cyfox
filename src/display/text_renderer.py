@@ -1,5 +1,6 @@
 """Text rendering for display"""
 from typing import Optional, Tuple
+# pylint: disable=import-error
 import pygame
 
 

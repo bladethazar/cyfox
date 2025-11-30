@@ -3,6 +3,7 @@ import threading
 import time
 from typing import List, Dict, Optional, Callable
 from datetime import datetime
+# pylint: disable=import-error
 import requests
 from src.core.config import Config
 from src.core.state import StateManager

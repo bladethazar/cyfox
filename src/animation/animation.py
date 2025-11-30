@@ -3,6 +3,7 @@
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional
+# pylint: disable=import-error
 import pygame
 from src.core.state import CyfoxState
 from src.core.config import Config
@@ -158,9 +159,9 @@ class AnimationManager:
         self.sprite_path = Path(sprite_path)
         self._load_animations()
 
+    # pylint: disable=too-many-locals,too-many-branches,too-many-statements
     def _load_animations(self):
         """Load all animations from sprite or sprite sheet"""
-        # pylint: disable=too-many-locals,too-many-branches,too-many-statements
         if not self.sprite_path.exists():
             print(f"Warning: Sprite not found at {self.sprite_path}")
             # Create a simple placeholder
