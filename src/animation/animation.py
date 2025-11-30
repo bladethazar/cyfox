@@ -1,9 +1,8 @@
 """Animation system for Cyfox sprites"""
-import pygame
-import os
+from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Optional
-from enum import Enum
+import pygame
 from src.core.state import CyfoxState
 from src.core.config import Config
 
@@ -25,12 +24,12 @@ class AnimationType(Enum):
 
 class SpriteSheet:
     """Handles sprite sheet loading and frame extraction"""
-    
-    def __init__(self, image_path: str, frame_width: int, frame_height: int, 
+
+    def __init__(self, image_path: str, frame_width: int, frame_height: int,
                  rows: int = 1, cols: int = 1):
         """
         Initialize sprite sheet
-        
+
         Args:
             image_path: Path to sprite sheet image
             frame_width: Width of each frame
@@ -45,24 +44,24 @@ class SpriteSheet:
         self.cols = cols
         self.frames: List[pygame.Surface] = []
         self._extract_frames()
-    
+
     def _extract_frames(self):
         """Extract individual frames from sprite sheet"""
         for row in range(self.rows):
             for col in range(self.cols):
-                x = col * self.frame_width
-                y = row * self.frame_height
+                x_pos = col * self.frame_width
+                y_pos = row * self.frame_height
                 frame = self.image.subsurface(
-                    pygame.Rect(x, y, self.frame_width, self.frame_height)
+                    pygame.Rect(x_pos, y_pos, self.frame_width, self.frame_height)
                 )
                 self.frames.append(frame)
-    
+
     def get_frame(self, index: int) -> pygame.Surface:
         """Get a specific frame by index"""
         if 0 <= index < len(self.frames):
             return self.frames[index]
         return self.frames[0] if self.frames else None
-    
+
     def get_frame_count(self) -> int:
         """Get total number of frames"""
         return len(self.frames)
@@ -70,11 +69,11 @@ class SpriteSheet:
 
 class Animation:
     """Represents a single animation sequence"""
-    
+
     def __init__(self, frames: List[pygame.Surface], fps: int = 8, loop: bool = True):
         """
         Initialize animation
-        
+
         Args:
             frames: List of pygame surfaces (frames)
             fps: Frames per second for this animation
@@ -88,17 +87,17 @@ class Animation:
         self.frame_duration = 1000 / fps  # milliseconds per frame
         self.playing = False
         self.finished = False
-    
+
     def update(self, dt: int):
         """Update animation (dt in milliseconds)"""
         if not self.playing:
             return
-        
+
         self.frame_time += dt
         if self.frame_time >= self.frame_duration:
             self.frame_time = 0
             self.current_frame += 1
-            
+
             if self.current_frame >= len(self.frames):
                 if self.loop:
                     self.current_frame = 0
@@ -106,24 +105,24 @@ class Animation:
                     self.current_frame = len(self.frames) - 1
                     self.finished = True
                     self.playing = False
-    
+
     def get_current_frame(self) -> pygame.Surface:
         """Get current frame"""
         if self.frames and 0 <= self.current_frame < len(self.frames):
             return self.frames[self.current_frame]
         return None
-    
+
     def play(self):
         """Start playing animation"""
         self.playing = True
         self.finished = False
         self.current_frame = 0
         self.frame_time = 0
-    
+
     def stop(self):
         """Stop animation"""
         self.playing = False
-    
+
     def reset(self):
         """Reset animation to beginning"""
         self.current_frame = 0
@@ -133,11 +132,11 @@ class Animation:
 
 class AnimationManager:
     """Manages all animations for Cyfox"""
-    
+
     def __init__(self, config: Config, sprite_path: Optional[str] = None):
         """
         Initialize animation manager
-        
+
         Args:
             config: Configuration object
             sprite_path: Path to sprite image/sheet
@@ -146,15 +145,15 @@ class AnimationManager:
         self.animations: Dict[AnimationType, Animation] = {}
         self.current_animation: Optional[Animation] = None
         self.current_type: AnimationType = AnimationType.IDLE
-        
+
         # Default sprite path
         if sprite_path is None:
             project_root = Path(__file__).parent.parent.parent
             sprite_path = project_root / "res" / "cyfox.png"
-        
+
         self.sprite_path = Path(sprite_path)
         self._load_animations()
-    
+
     def _load_animations(self):
         """Load all animations from sprite or sprite sheet"""
         if not self.sprite_path.exists():
@@ -162,17 +161,17 @@ class AnimationManager:
             # Create a simple placeholder
             self._create_placeholder_animations()
             return
-        
+
         sprite_image = pygame.image.load(str(self.sprite_path)).convert_alpha()
         width, height = sprite_image.get_size()
-        
+
         # Check if this is a sprite sheet or single image
         # Try to detect sprite sheet: if width/height is divisible by common frame sizes
         frame_width = self.config.get('cyfox.animation.frame_width', None)
         frame_height = self.config.get('cyfox.animation.frame_height', None)
         sprite_rows = self.config.get('cyfox.animation.sprite_rows', None)
         sprite_cols = self.config.get('cyfox.animation.sprite_cols', None)
-        
+
         # Auto-detect if not configured
         if frame_width is None or frame_height is None:
             # Try common frame sizes
@@ -183,14 +182,14 @@ class AnimationManager:
                     sprite_cols = width // test_size
                     sprite_rows = height // test_size
                     break
-        
+
         # Fallback to single sprite
         if frame_width is None or frame_height is None:
             frame_width = width
             frame_height = height
             sprite_cols = 1
             sprite_rows = 1
-        
+
         # Create sprite sheet
         sprite_sheet = SpriteSheet(
             str(self.sprite_path),
@@ -199,15 +198,15 @@ class AnimationManager:
             rows=sprite_rows or 1,
             cols=sprite_cols or 1
         )
-        
+
         # Get FPS settings
         idle_fps = self.config.get('cyfox.animation.idle_fps', 8)
         active_fps = self.config.get('cyfox.animation.active_fps', 12)
-        
+
         # Load animations from sprite sheet
         # If sprite sheet has multiple frames, distribute them across animations
         total_frames = sprite_sheet.get_frame_count()
-        
+
         if total_frames == 1:
             # Single sprite - use for all animations
             base_frame = sprite_sheet.get_frame(0)
@@ -223,7 +222,7 @@ class AnimationManager:
             # Multiple frames - distribute across animations
             # Default distribution: 3 frames per row, 8 rows
             frames_per_animation = max(1, total_frames // 8)  # Distribute across 8 main animations
-            
+
             anim_types = [
                 AnimationType.IDLE,
                 AnimationType.EATING,
@@ -234,7 +233,7 @@ class AnimationManager:
                 AnimationType.READING,
                 AnimationType.ALERT,
             ]
-            
+
             frame_idx = 0
             for anim_type in anim_types:
                 frames = []
@@ -242,32 +241,35 @@ class AnimationManager:
                     if frame_idx < total_frames:
                         frames.append(sprite_sheet.get_frame(frame_idx))
                         frame_idx += 1
-                
+
                 if not frames:
                     # Fallback to first frame if no frames assigned
                     frames = [sprite_sheet.get_frame(0)]
-                
+
                 # Use appropriate FPS
-                fps = idle_fps if anim_type in [AnimationType.IDLE, AnimationType.RESTING, AnimationType.READING] else active_fps
+                if anim_type in [AnimationType.IDLE, AnimationType.RESTING, AnimationType.READING]:
+                    fps = idle_fps
+                else:
+                    fps = active_fps
                 self.animations[anim_type] = Animation(frames, fps=fps)
-        
+
         # Set default animation
         self.current_animation = self.animations[AnimationType.IDLE]
         self.current_animation.play()
-    
+
     def _create_placeholder_animations(self):
         """Create placeholder animations if sprite is missing"""
         # Create a simple colored rectangle as placeholder
         placeholder = pygame.Surface((64, 64))
         placeholder.fill((100, 150, 255))  # Blue-ish color
-        
+
         idle_fps = self.config.get('cyfox.animation.idle_fps', 8)
         for anim_type in AnimationType:
             self.animations[anim_type] = Animation([placeholder], fps=idle_fps)
-        
+
         self.current_animation = self.animations[AnimationType.IDLE]
         self.current_animation.play()
-    
+
     def set_animation(self, anim_type: AnimationType):
         """Switch to a different animation"""
         if anim_type in self.animations:
@@ -276,18 +278,18 @@ class AnimationManager:
             self.current_animation = self.animations[anim_type]
             self.current_type = anim_type
             self.current_animation.play()
-    
+
     def update(self, dt: int):
         """Update current animation"""
         if self.current_animation:
             self.current_animation.update(dt)
-    
+
     def get_current_frame(self) -> Optional[pygame.Surface]:
         """Get current animation frame"""
         if self.current_animation:
             return self.current_animation.get_current_frame()
         return None
-    
+
     def map_state_to_animation(self, state: CyfoxState) -> AnimationType:
         """Map CyfoxState to AnimationType"""
         mapping = {

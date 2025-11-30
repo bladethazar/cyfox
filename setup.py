@@ -1,6 +1,6 @@
 """Setup script for Cyfox"""
-from setuptools import setup, find_packages
 from pathlib import Path
+from setuptools import setup, find_packages
 
 # Read README
 readme_file = Path(__file__).parent / "README.md"
@@ -8,16 +8,16 @@ long_description = readme_file.read_text() if readme_file.exists() else ""
 
 # Read version
 version_file = Path(__file__).parent / "src" / "__init__.py"
-version = "1.0.0"
+VERSION = "1.0.0"
 if version_file.exists():
     for line in version_file.read_text().splitlines():
         if line.startswith("__version__"):
-            version = line.split("=")[1].strip().strip('"').strip("'")
+            VERSION = line.split("=")[1].strip().strip('"').strip("'")
             break
 
 setup(
     name="cyfox",
-    version=version,
+    version=VERSION,
     description="Animated Desktop DevOps Buddy for Raspberry Pi Zero 2W",
     long_description=long_description,
     long_description_content_type="text/markdown",
